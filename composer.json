@@ -1,0 +1,30 @@
+{
+    "name": "klipper/module-device-bundle",
+    "type": "symfony-bundle",
+    "description": "Device module of Klipper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "klipper/module-partner-bundle": "^2.0.0",
+        "klipper/module-product-bundle": "^2.0.0",
+        "klipper/module": "^2.0.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Module\\DeviceBundle\\": "" },
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}

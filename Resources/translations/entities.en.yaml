@@ -1,0 +1,8 @@
+# Device
+device.name: Device
+device.name.plural: Devices
+device.fields.serial_number: Serial number
+device.fields.imei: IMEI
+device.fields.imei2: IMEI 2
+device.fields.terminated_at: Terminated at
+device.associations.status: Status

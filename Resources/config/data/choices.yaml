@@ -1,0 +1,21 @@
+device_status:
+    -   value: operational
+        label: Operational
+        color: '#26a69a'
+        translations:
+            fr: { label: Opérationnel }
+    -   value: under_maintenance
+        label: Under maintenance
+        color: '#ffc107'
+        translations:
+            fr: { label: En maintenance }
+    -   value: recyclyed
+        label: Recyclyed
+        color: '#8d6e63'
+        translations:
+            fr: { label: Recyclé }
+    -   value: terminated
+        label: Terminated
+        color: '#455a64'
+        translations:
+            fr: { label: Détruit }

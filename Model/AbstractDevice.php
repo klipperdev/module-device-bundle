@@ -26,6 +26,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Device model.
  *
  * @author François Pluchino <francois.pluchino@klipper.dev>
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 abstract class AbstractDevice implements DeviceInterface
 {

@@ -41,7 +41,7 @@ abstract class AbstractDevice implements DeviceInterface
      * @ORM\Column(type="string", length=128, nullable=true)
      *
      * @Assert\Type(type="string")
-     * @Assert\Length(min="0", max="128")
+     * @Assert\Length(min=0, max=128)
      *
      * @Serializer\Expose
      */
@@ -51,7 +51,7 @@ abstract class AbstractDevice implements DeviceInterface
      * @ORM\Column(type="string", length=15, nullable=true)
      *
      * @Assert\Type(type="string")
-     * @Assert\Length(min="0", max="15")
+     * @Assert\Length(min=0, max=15)
      *
      * @Serializer\Expose
      */
@@ -61,7 +61,7 @@ abstract class AbstractDevice implements DeviceInterface
      * @ORM\Column(type="string", length=15, nullable=true)
      *
      * @Assert\Type(type="string")
-     * @Assert\Length(min="0", max="15")
+     * @Assert\Length(min=0, max=15)
      *
      * @Serializer\Expose
      */

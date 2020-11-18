@@ -77,7 +77,7 @@ abstract class AbstractDevice implements DeviceInterface
     protected ?ChoiceInterface $status = null;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      *
      * @Assert\Type(type="datetime")
      *

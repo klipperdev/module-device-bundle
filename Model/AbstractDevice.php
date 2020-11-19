@@ -42,6 +42,10 @@ abstract class AbstractDevice implements DeviceInterface
      *
      * @Assert\Type(type="string")
      * @Assert\Length(min=0, max=128)
+     * @Assert\Expression(
+     *     expression="!(!value && !this.getImei())",
+     *     message="This value should not be blank."
+     * )
      *
      * @Serializer\Expose
      */
@@ -51,7 +55,12 @@ abstract class AbstractDevice implements DeviceInterface
      * @ORM\Column(type="string", length=15, nullable=true)
      *
      * @Assert\Type(type="string")
-     * @Assert\Length(min=0, max=15)
+     * @Assert\Length(min=15, max=15)
+     * @Assert\Regex("/^[0-9]{15}/")
+     * @Assert\Expression(
+     *     expression="!(!value && !this.getSerialNumber())",
+     *     message="This value should not be blank."
+     * )
      *
      * @Serializer\Expose
      */
@@ -61,7 +70,8 @@ abstract class AbstractDevice implements DeviceInterface
      * @ORM\Column(type="string", length=15, nullable=true)
      *
      * @Assert\Type(type="string")
-     * @Assert\Length(min=0, max=15)
+     * @Assert\Length(min=15, max=15)
+     * @Assert\Regex("/^[0-9]{15}/")
      *
      * @Serializer\Expose
      */

@@ -83,6 +83,7 @@ abstract class AbstractDevice implements DeviceInterface
      * @EntityDoctrineChoice("device_status")
      *
      * @Serializer\Expose
+     * @Serializer\MaxDepth(1)
      */
     protected ?ChoiceInterface $status = null;
 
@@ -92,6 +93,7 @@ abstract class AbstractDevice implements DeviceInterface
      * @Assert\Type(type="datetime")
      *
      * @Serializer\Expose
+     * @Serializer\MaxDepth(1)
      */
     protected ?\DateTimeInterface $terminatedAt = null;
 

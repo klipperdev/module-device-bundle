@@ -1,6 +1,6 @@
 # Device
-device.name: Device
-device.name.plural: Devices
+device.name: Equipement
+device.name.plural: Equipements
 device.fields.serial_number: Numéro de série
 device.fields.imei: IMEI
 device.fields.imei2: IMEI 2

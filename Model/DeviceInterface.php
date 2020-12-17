@@ -12,6 +12,7 @@
 namespace Klipper\Module\DeviceBundle\Model;
 
 use Klipper\Component\DoctrineChoice\Model\ChoiceInterface;
+use Klipper\Component\Model\Traits\LabelableInterface;
 use Klipper\Component\Model\Traits\OrganizationalRequiredInterface;
 use Klipper\Component\Model\Traits\TimestampableInterface;
 use Klipper\Contracts\Model\IdInterface;
@@ -27,6 +28,7 @@ use Klipper\Module\ProductBundle\Model\Traits\ProductCombinationableOptionalInte
 interface DeviceInterface extends
     IdInterface,
     AccountableOptionalInterface,
+    LabelableInterface,
     ProductableOptionalInterface,
     ProductCombinationableOptionalInterface,
     OrganizationalRequiredInterface,

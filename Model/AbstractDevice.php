@@ -97,6 +97,19 @@ abstract class AbstractDevice implements DeviceInterface
      */
     protected ?\DateTimeInterface $terminatedAt = null;
 
+    public function setLabel(?string $label): self
+    {
+        return $this;
+    }
+
+    /**
+     * @Serializer\VirtualProperty("label")
+     */
+    public function getLabel(): ?string
+    {
+        return $this->getImei() ?? $this->getSerialNumber();
+    }
+
     public function setSerialNumber(?string $serialNumber): self
     {
         $this->serialNumber = $serialNumber;

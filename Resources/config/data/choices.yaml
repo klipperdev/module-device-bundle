@@ -4,6 +4,11 @@ device_status:
         color: '#26a69a'
         translations:
             fr: { label: Opérationnel }
+    -   value: broken_down
+        label: Broken down
+        color: '#ffc107'
+        translations:
+            fr: { label: En panne }
     -   value: under_maintenance
         label: Under maintenance
         color: '#ffc107'

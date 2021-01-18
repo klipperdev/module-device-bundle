@@ -14,8 +14,8 @@ device_status:
         color: '#ffc107'
         translations:
             fr: { label: En maintenance }
-    -   value: recyclyed
-        label: Recyclyed
+    -   value: recycled
+        label: Recycled
         color: '#8d6e63'
         translations:
             fr: { label: Recyclé }

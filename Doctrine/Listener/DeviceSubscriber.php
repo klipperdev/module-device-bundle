@@ -15,6 +15,7 @@ use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Events;
+use Klipper\Component\DoctrineChoice\Model\ChoiceInterface;
 use Klipper\Component\DoctrineExtra\Util\ClassUtils;
 use Klipper\Module\DeviceBundle\Model\DeviceInterface;
 
@@ -23,6 +24,8 @@ use Klipper\Module\DeviceBundle\Model\DeviceInterface;
  */
 class DeviceSubscriber implements EventSubscriber
 {
+    private ?array $statusChoices = null;
+
     public function getSubscribedEvents(): array
     {
         return [
@@ -53,6 +56,11 @@ class DeviceSubscriber implements EventSubscriber
             $changeSet = $uow->getEntityChangeSet($object);
             $edited = false;
 
+            if (null === $object->getStatus() && null !== $defaultStatus = $this->getStatus($em, 'operational')) {
+                $edited = true;
+                $object->setStatus($defaultStatus);
+            }
+
             if ($create || isset($changeSet['status']) || (isset($changeSet['terminatedAt']) && null === $changeSet['terminatedAt'][1])) {
                 $status = $object->getStatus();
 
@@ -69,5 +77,22 @@ class DeviceSubscriber implements EventSubscriber
                 $uow->recomputeSingleEntityChangeSet($meta, $object);
             }
         }
+    }
+
+    private function getStatus(EntityManagerInterface $em, string $value): ?ChoiceInterface
+    {
+        if (null === $this->statusChoices) {
+            $this->statusChoices = [];
+            $res = $em->getRepository(ChoiceInterface::class)->findBy([
+                'type' => 'device_status',
+            ]);
+
+            /** @var ChoiceInterface $item */
+            foreach ($res as $item) {
+                $this->statusChoices[$item->getValue()] = $item;
+            }
+        }
+
+        return $this->statusChoices[$value] ?? null;
     }
 }

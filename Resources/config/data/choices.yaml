@@ -14,6 +14,11 @@ device_status:
         color: '#ffc107'
         translations:
             fr: { label: En maintenance }
+    -   value: broken_down_return_to_customer
+        label: Broken down - Return to customer
+        color: '#ffc107'
+        translations:
+            fr: { label: En panne - Retour client }
     -   value: recycled
         label: Recycled
         color: '#8d6e63'

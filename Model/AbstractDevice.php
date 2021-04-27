@@ -52,11 +52,11 @@ abstract class AbstractDevice implements DeviceInterface
     protected ?string $serialNumber = null;
 
     /**
-     * @ORM\Column(type="string", length=15, nullable=true)
+     * @ORM\Column(type="string", length=20, nullable=true)
      *
      * @Assert\Type(type="string")
-     * @Assert\Length(min=15, max=15)
-     * @Assert\Regex("/^[0-9]{15}/")
+     * @Assert\Length(min=14, max=20)
+     * @Assert\Regex("/^[0-9]{14,20}/")
      * @Assert\Expression(
      *     expression="!(!value && !this.getSerialNumber())",
      *     message="This value should not be blank."
@@ -67,11 +67,11 @@ abstract class AbstractDevice implements DeviceInterface
     protected ?string $imei = null;
 
     /**
-     * @ORM\Column(type="string", length=15, nullable=true)
+     * @ORM\Column(type="string", length=20, nullable=true)
      *
      * @Assert\Type(type="string")
-     * @Assert\Length(min=15, max=15)
-     * @Assert\Regex("/^[0-9]{15}/")
+     * @Assert\Length(min=14, max=20)
+     * @Assert\Regex("/^[0-9]{14,20}/")
      *
      * @Serializer\Expose
      */

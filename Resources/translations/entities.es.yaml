@@ -1,0 +1,8 @@
+# Device
+device.name: Dispositivo
+device.name.plural: Dispositivos
+device.fields.serial_number: Nº de serie
+device.fields.imei: IMEI
+device.fields.imei2: IMEI 2
+device.fields.terminated_at: Destruido/a el
+device.associations.status: Estado

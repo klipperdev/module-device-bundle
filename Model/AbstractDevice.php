@@ -42,10 +42,6 @@ abstract class AbstractDevice implements DeviceInterface
      *
      * @Assert\Type(type="string")
      * @Assert\Length(min=0, max=128)
-     * @Assert\Expression(
-     *     expression="!(!value && !this.getImei())",
-     *     message="This value should not be blank."
-     * )
      *
      * @Serializer\Expose
      */
@@ -57,10 +53,6 @@ abstract class AbstractDevice implements DeviceInterface
      * @Assert\Type(type="string")
      * @Assert\Length(min=14, max=20)
      * @Assert\Regex("/^[0-9]{14,20}/")
-     * @Assert\Expression(
-     *     expression="!(!value && !this.getSerialNumber())",
-     *     message="This value should not be blank."
-     * )
      *
      * @Serializer\Expose
      */
@@ -144,6 +136,11 @@ abstract class AbstractDevice implements DeviceInterface
     public function getImei2(): ?string
     {
         return $this->imei2;
+    }
+
+    public function isEmpty(): bool
+    {
+        return null === $this->getSerialNumber() && null === $this->getImei() && null === $this->getImei2();
     }
 
     public function setStatus(?ChoiceInterface $status): self

@@ -55,6 +55,8 @@ interface DeviceInterface extends
 
     public function getImei2(): ?string;
 
+    public function isEmpty(): bool;
+
     /**
      * @return static
      */

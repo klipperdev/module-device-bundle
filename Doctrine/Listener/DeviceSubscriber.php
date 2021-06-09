@@ -14,6 +14,7 @@ namespace Klipper\Module\DeviceBundle\Doctrine\Listener;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\OnFlushEventArgs;
+use Doctrine\ORM\Event\PostFlushEventArgs;
 use Doctrine\ORM\Events;
 use Klipper\Component\DoctrineChoice\Listener\Traits\DoctrineListenerChoiceTrait;
 use Klipper\Component\DoctrineExtra\Util\ClassUtils;
@@ -26,10 +27,16 @@ class DeviceSubscriber implements EventSubscriber
 {
     use DoctrineListenerChoiceTrait;
 
+    /**
+     * @var DeviceInterface[]
+     */
+    private array $devices = [];
+
     public function getSubscribedEvents(): array
     {
         return [
             Events::onFlush,
+            Events::postFlush,
         ];
     }
 
@@ -44,6 +51,25 @@ class DeviceSubscriber implements EventSubscriber
 
         foreach ($uow->getScheduledEntityUpdates() as $object) {
             $this->persistDevice($em, $object);
+        }
+    }
+
+    public function postFlush(PostFlushEventArgs $args): void
+    {
+        if (!empty($this->devices)) {
+            $em = $args->getEntityManager();
+            $ids = [];
+
+            foreach ($this->devices as $device) {
+                $ids[] = $device->getId();
+            }
+
+            $em->createQuery('UPDATE App:Device d SET d.serialNumber = CONCAT(\'UNKNOWN_\', d.id) WHERE d.id IN (:ids)')
+                ->setParameter('ids', $ids)
+                ->execute()
+            ;
+
+            $this->devices = [];
         }
     }
 
@@ -72,6 +98,15 @@ class DeviceSubscriber implements EventSubscriber
                 } else {
                     $edited = $edited || null !== $object->getTerminatedAt();
                     $object->setTerminatedAt(null);
+                }
+            }
+
+            if ($object->isEmpty()) {
+                if ($create || null === $object->getId()) {
+                    $this->devices[] = $object;
+                } else {
+                    $edited = true;
+                    $object->setSerialNumber('UNKNOWN_'.$object->getId());
                 }
             }
 

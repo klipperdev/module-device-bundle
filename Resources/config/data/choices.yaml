@@ -1,9 +1,9 @@
 device_status:
-    -   value: operational
-        label: Operational
+    -   value: in_use
+        label: In use
         color: '#26a69a'
         translations:
-            fr: { label: Opérationnel }
+            fr: { label: En utilisation }
     -   value: broken_down
         label: Broken down
         color: '#ffc107'

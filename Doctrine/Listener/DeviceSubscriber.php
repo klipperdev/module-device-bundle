@@ -16,7 +16,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Event\PostFlushEventArgs;
 use Doctrine\ORM\Events;
-use Klipper\Component\DoctrineChoice\Listener\Traits\DoctrineListenerChoiceTrait;
+use Klipper\Component\DoctrineChoice\ChoiceManagerInterface;
 use Klipper\Component\DoctrineExtra\Util\ClassUtils;
 use Klipper\Module\DeviceBundle\Model\DeviceInterface;
 
@@ -25,12 +25,17 @@ use Klipper\Module\DeviceBundle\Model\DeviceInterface;
  */
 class DeviceSubscriber implements EventSubscriber
 {
-    use DoctrineListenerChoiceTrait;
+    private ChoiceManagerInterface $choiceManager;
 
     /**
      * @var DeviceInterface[]
      */
     private array $devices = [];
+
+    public function __construct(ChoiceManagerInterface $choiceManager)
+    {
+        $this->choiceManager = $choiceManager;
+    }
 
     public function getSubscribedEvents(): array
     {
@@ -83,7 +88,7 @@ class DeviceSubscriber implements EventSubscriber
             $edited = false;
 
             if (null === $object->getStatus()
-                && null !== $defaultStatus = $this->getChoice($em, 'device_status', 'operational')
+                && null !== $defaultStatus = $this->choiceManager->getChoice('device_status', 'in_use')
             ) {
                 $edited = true;
                 $object->setStatus($defaultStatus);

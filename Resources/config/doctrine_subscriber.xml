@@ -8,6 +8,7 @@
         <!-- Device Listener -->
         <service id="Klipper\Module\DeviceBundle\Doctrine\Listener\DeviceSubscriber">
             <tag name="doctrine.event_subscriber" />
+            <argument type="service" id="klipper_doctrine_choice.manager"/>
         </service>
     </services>
 </container>

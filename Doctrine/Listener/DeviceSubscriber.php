@@ -67,6 +67,8 @@ class DeviceSubscriber implements EventSubscriber
 
             foreach ($this->devices as $device) {
                 $ids[] = $device->getId();
+                // Update value only for the display
+                $device->setSerialNumber('UNKNOWN_'.$device->getId());
             }
 
             $em->createQuery('UPDATE App:Device d SET d.serialNumber = CONCAT(\'UNKNOWN_\', d.id) WHERE d.id IN (:ids)')

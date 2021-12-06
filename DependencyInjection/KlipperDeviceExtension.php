@@ -11,6 +11,8 @@
 
 namespace Klipper\Module\DeviceBundle\DependencyInjection;
 
+use Klipper\Bundle\ApiBundle\Util\ControllerDefinitionUtil;
+use Klipper\Module\DeviceBundle\Controller\ApiDeviceAttachmentController;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
@@ -28,5 +30,7 @@ class KlipperDeviceExtension extends Extension
     {
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('doctrine_subscriber.xml');
+
+        ControllerDefinitionUtil::set($container, ApiDeviceAttachmentController::class);
     }
 }

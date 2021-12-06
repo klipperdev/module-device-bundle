@@ -70,4 +70,11 @@ interface DeviceInterface extends
     public function setTerminatedAt(?\DateTimeInterface $terminatedAt);
 
     public function getTerminatedAt(): ?\DateTimeInterface;
+
+    /**
+     * @return static
+     */
+    public function setDescription(?string $description);
+
+    public function getDescription(): ?string;
 }

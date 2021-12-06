@@ -91,6 +91,15 @@ abstract class AbstractDevice implements DeviceInterface
      */
     protected ?\DateTimeInterface $terminatedAt = null;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     *
+     * @Assert\Type(type="string")
+     * @Assert\Length(min=0, max=65535)
+     *
+     * @Serializer\Expose
+     */
+    protected ?string $description = null;
     public function setLabel(?string $label): self
     {
         return $this;
@@ -167,5 +176,17 @@ abstract class AbstractDevice implements DeviceInterface
     public function getTerminatedAt(): ?\DateTimeInterface
     {
         return $this->terminatedAt;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
     }
 }

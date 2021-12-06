@@ -5,4 +5,5 @@ device.fields.serial_number: Nº de serie
 device.fields.imei: IMEI
 device.fields.imei2: IMEI 2
 device.fields.terminated_at: Destruido/a el
+device.fields.description: Descripción
 device.associations.status: Estado

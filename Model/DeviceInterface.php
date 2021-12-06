@@ -11,6 +11,7 @@
 
 namespace Klipper\Module\DeviceBundle\Model;
 
+use Doctrine\Common\Collections\Collection;
 use Klipper\Component\DoctrineChoice\Model\ChoiceInterface;
 use Klipper\Component\Model\Traits\LabelableInterface;
 use Klipper\Component\Model\Traits\OrganizationalRequiredInterface;
@@ -77,4 +78,9 @@ interface DeviceInterface extends
     public function setDescription(?string $description);
 
     public function getDescription(): ?string;
+
+    /**
+     * @return Collection|DeviceAttachmentInterface[]
+     */
+    public function getAttachments(): Collection;
 }

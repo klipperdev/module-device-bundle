@@ -7,3 +7,13 @@ device.fields.imei2: IMEI 2
 device.fields.terminated_at: Destruido/a el
 device.fields.description: Descripción
 device.associations.status: Estado
+
+# Device Attachment
+device_attachment.name: Adjunto del equipo
+device_attachment.name.plural: Adjuntos del equipo
+device_attachment.fields.extension: Extensión
+device_attachment.fields.type_mime: Type mime
+device_attachment.fields.size: Tamaño
+device_attachment.fields.width: Ancho
+device_attachment.fields.height: Altura
+device_attachment.fields.image: ¿Es una imagen?

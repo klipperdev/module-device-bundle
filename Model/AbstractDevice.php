@@ -11,6 +11,8 @@
 
 namespace Klipper\Module\DeviceBundle\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Klipper\Component\DoctrineChoice\Model\ChoiceInterface;
@@ -100,6 +102,17 @@ abstract class AbstractDevice implements DeviceInterface
      * @Serializer\Expose
      */
     protected ?string $description = null;
+
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="Klipper\Module\DeviceBundle\Model\DeviceAttachmentInterface",
+     *     fetch="EXTRA_LAZY",
+     *     mappedBy="device",
+     *     orphanRemoval=true
+     * )
+     */
+    protected ?Collection $attachments = null;
+
     public function setLabel(?string $label): self
     {
         return $this;
@@ -188,5 +201,10 @@ abstract class AbstractDevice implements DeviceInterface
     public function getDescription(): ?string
     {
         return $this->description;
+    }
+
+    public function getAttachments(): Collection
+    {
+        return $this->attachments ?: $this->attachments = new ArrayCollection();
     }
 }

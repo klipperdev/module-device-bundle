@@ -19,6 +19,11 @@ device_status:
         color: '#ffc107'
         translations:
             fr: { label: En panne - Retour client }
+    -   value: recycling
+        label: Recycling
+        color: '#8d6e63'
+        translations:
+            fr: { label: En recyclage }
     -   value: recycled
         label: Recycled
         color: '#8d6e63'
